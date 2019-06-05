@@ -9,8 +9,28 @@
 <div class="container body-content">
 
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+    <form th:action="@{/search/results}">
+        <h2>Search by:</h2>
 
-    <!-- TODO #3 - Use the same list display from search.html -->
+        <p>
+            <span th:each="column : ${columns}">
+                <input
+                        type="radio"
+                        name="searchType"
+                        th:id="${column.key}"
+                        th:value="${column.key}"
+                        th:checked="${column.key == 'all'}"/>
+                <label th:for="${column.key}" th:text="${column.value}"></label>
+            </span>
+        </p>
+    </form>
+
+    <hr />
+
+    <div th:each="job :${jobs}">
+        <p  th:each="info : ${job}" th:text="${#strings.capitalizeWords(info.key)} + ': ' + ${info.value}"></p>
+        <hr />
+    </div>
 
 </div>
 

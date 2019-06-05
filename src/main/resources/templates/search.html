@@ -36,7 +36,17 @@
 
     <hr />
 
-    <!-- TODO #2 - Loop over jobs map to display all job fields -->
+    <div th:if="${not #lists.isEmpty(jobs)}">
+        <h4 th:text="${numResults}"></h4>
+    </div>
+    <div th:each="job :${jobs}">
+        <hr />
+        <p  th:each="info : ${job}" th:text="${#strings.capitalizeWords(info.key)} + ': ' + ${info.value}"></p>
+    </div>
+
+    <div>
+        <p th:text="${noJobs}"></p>
+    </div>
 
 </div>
 

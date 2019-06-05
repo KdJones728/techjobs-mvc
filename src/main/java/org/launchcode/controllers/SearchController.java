@@ -22,6 +22,30 @@ public class SearchController {
         return "search";
     }
 
+    @RequestMapping(value = "/results")
+    public String displayResults(Model model,
+                                 @RequestParam String searchType,
+                                 @RequestParam String searchTerm) {
+        ArrayList<HashMap<String, String>> jobs;
+
+        if (searchType.equals("all")) {
+            jobs = JobData.findByValue(searchTerm);
+        } else {
+            jobs = JobData.findByColumnAndValue(searchType, searchTerm);
+        }
+        int numJobs = jobs.size();
+        String numResults = "Your Search Has Returned " + (numJobs) + " Result(s)";
+        model.addAttribute("columns", ListController.columnChoices);
+        model.addAttribute("jobs", jobs);
+        model.addAttribute("numResults", numResults);
+
+        if(jobs.isEmpty()) {
+            String noJobs = "There were no jobs that matched your search, \"" + searchTerm + "\". Please try another query.";
+            model.addAttribute("noJobs", noJobs);
+        }
+        return "search";
+    }
+
     // TODO #1 - Create handler to process search request and display results
 
 }

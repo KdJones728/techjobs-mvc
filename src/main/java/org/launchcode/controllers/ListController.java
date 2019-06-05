@@ -20,6 +20,7 @@ public class ListController {
 
     public ListController () {
         columnChoices.put("core competency", "Skill");
+        columnChoices.put("name", "Name");
         columnChoices.put("employer", "Employer");
         columnChoices.put("location", "Location");
         columnChoices.put("position type", "Position Type");

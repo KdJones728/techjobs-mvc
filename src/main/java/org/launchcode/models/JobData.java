@@ -46,7 +46,7 @@ public class JobData {
 
         // Bonus mission: sort the results
         Collections.sort(values);
-
+        System.out.println(values);
         return values;
     }
 
@@ -119,6 +119,8 @@ public class JobData {
         return jobs;
     }
 
+
+
     /**
      * Read in data from a CSV file and store it in a list
      */
@@ -161,5 +163,7 @@ public class JobData {
             e.printStackTrace();
         }
     }
+
+
 
 }
