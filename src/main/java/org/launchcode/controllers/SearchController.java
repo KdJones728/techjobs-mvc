@@ -35,9 +35,10 @@ public class SearchController {
         }
         int numJobs = jobs.size();
         String numResults = "Your Search Has Returned " + (numJobs) + " Result(s)";
+        model.addAttribute("numResults", numResults);
         model.addAttribute("columns", ListController.columnChoices);
         model.addAttribute("jobs", jobs);
-        model.addAttribute("numResults", numResults);
+
 
         if(jobs.isEmpty()) {
             String noJobs = "There were no jobs that matched your search, \"" + searchTerm + "\". Please try another query.";

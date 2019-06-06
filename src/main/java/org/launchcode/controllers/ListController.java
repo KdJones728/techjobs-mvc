@@ -60,6 +60,10 @@ public class ListController {
         ArrayList<HashMap<String, String>> jobs = JobData.findByColumnAndValue(column, value);
         model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
         model.addAttribute("jobs", jobs);
+        int numJobs = jobs.size();
+        String numResults = "Your Search Has Returned " + (numJobs) + " Result(s)";
+        model.addAttribute("numResults", numResults);
+        model.addAttribute("searchTerm", value);
 
         return "list-jobs";
     }

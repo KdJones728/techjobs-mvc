@@ -10,7 +10,7 @@
 
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
     <form th:action="@{/search/results}">
-        <h2>Search by:</h2>
+        <h2>Search by:</h2> <span th:text="${searchTerm}"> </span>
 
         <p>
             <span th:each="column : ${columns}">
@@ -27,10 +27,16 @@
 
     <hr />
 
-    <div th:each="job :${jobs}">
-        <p  th:each="info : ${job}" th:text="${#strings.capitalizeWords(info.key)} + ': ' + ${info.value}"></p>
-        <hr />
+    <div th:if="${not #lists.isEmpty(jobs)}">
+        <h4 th:text="${numResults}"></h4>
     </div>
+
+    <table th:each="job : ${jobs}" class="job-listing" th:if="${not #lists.isEmpty(jobs)}">
+
+        <tr th:each="info : ${job}" >
+            <td  th:text="${#strings.capitalize(info.key)} + ': ' +${info.value}"></td>
+        </tr>
+    </table>
 
 </div>
 
